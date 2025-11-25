@@ -31,22 +31,6 @@ const TemplateGenerator = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  useEffect(() => {
-    loadRoles();
-  }, [formData.os_platform, searchTerm]);
-
-  useEffect(() => {
-    // Reset VM groups when environment changes
-    if (['dev', 'it'].includes(formData.environment)) {
-      setVmGroups([{ groupNumber: 1, region: '', hostnames: [''], roles: [], os_platform: formData.os_platform }]);
-    } else {
-      setVmGroups([
-        { groupNumber: 1, region: 'cus', hostnames: [''], roles: [], os_platform: formData.os_platform },
-        { groupNumber: 1, region: 'eus', hostnames: [''], roles: [], os_platform: formData.os_platform }
-      ]);
-    }
-  }, [formData.environment]);
-
   const loadRoles = async () => {
     try {
       const params = { os_platform: formData.os_platform };
@@ -59,6 +43,23 @@ const TemplateGenerator = () => {
       console.error('Failed to load roles:', err);
     }
   };
+
+  useEffect(() => {
+    loadRoles();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formData.os_platform, searchTerm]);
+
+  useEffect(() => {
+    // Reset VM groups when environment changes
+    if (['dev', 'it'].includes(formData.environment)) {
+      setVmGroups([{ groupNumber: 1, region: '', hostnames: [''], roles: [], os_platform: formData.os_platform }]);
+    } else {
+      setVmGroups([
+        { groupNumber: 1, region: 'cus', hostnames: [''], roles: [], os_platform: formData.os_platform },
+        { groupNumber: 1, region: 'eus', hostnames: [''], roles: [], os_platform: formData.os_platform }
+      ]);
+    }
+  }, [formData.environment, formData.os_platform]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

@@ -8,10 +8,6 @@ const TmplFile = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  useEffect(() => {
-    loadTmplFile();
-  }, [environment]);
-
   const loadTmplFile = async () => {
     setLoading(true);
     setError('');
@@ -24,6 +20,11 @@ const TmplFile = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    loadTmplFile();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [environment]);
 
   const handleSave = async (e) => {
     e.preventDefault();

@@ -12,17 +12,6 @@ const AnsibleRoleVariables = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  useEffect(() => {
-    loadRoles();
-    loadVariables();
-  }, []);
-
-  useEffect(() => {
-    if (selectedRole && selectedOsPlatform) {
-      loadExistingVariable();
-    }
-  }, [selectedRole, selectedOsPlatform]);
-
   const loadRoles = async () => {
     try {
       const response = await ansibleRolesAPI.getAll({ os_platform: selectedOsPlatform });
@@ -59,6 +48,19 @@ const AnsibleRoleVariables = () => {
       console.error('Failed to load existing variable');
     }
   };
+
+  useEffect(() => {
+    loadRoles();
+    loadVariables();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (selectedRole && selectedOsPlatform) {
+      loadExistingVariable();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedRole, selectedOsPlatform]);
 
   const handleOsPlatformChange = (platform) => {
     setSelectedOsPlatform(platform);

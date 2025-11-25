@@ -15,14 +15,6 @@ const AnsibleRoleNames = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  useEffect(() => {
-    loadRoles();
-  }, []);
-
-  useEffect(() => {
-    filterRoles();
-  }, [roles, selectedOsPlatform]);
-
   const loadRoles = async () => {
     try {
       const response = await ansibleRolesAPI.getAll();
@@ -36,6 +28,15 @@ const AnsibleRoleNames = () => {
     const filtered = roles.filter(role => role.os_platform === selectedOsPlatform);
     setFilteredRoles(filtered);
   };
+
+  useEffect(() => {
+    loadRoles();
+  }, []);
+
+  useEffect(() => {
+    filterRoles();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [roles, selectedOsPlatform]);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;

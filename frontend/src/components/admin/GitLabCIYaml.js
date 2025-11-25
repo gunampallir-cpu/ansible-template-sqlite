@@ -17,16 +17,6 @@ const GitLabCIYaml = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  useEffect(() => {
-    loadConfigs();
-    loadRoles();
-  }, []);
-
-  useEffect(() => {
-    loadConfigs();
-    resetForm();
-  }, [activeTab]);
-
   const loadConfigs = async () => {
     try {
       const response = await gitlabCIAPI.getAll({ config_type: activeTab });
@@ -55,6 +45,18 @@ const GitLabCIYaml = () => {
     });
     setEditingId(null);
   };
+
+  useEffect(() => {
+    loadConfigs();
+    loadRoles();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    loadConfigs();
+    resetForm();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTab]);
 
   const handleInputChange = (e) => {
     setFormData({

@@ -8,10 +8,6 @@ const OSConfiguration = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  useEffect(() => {
-    loadConfig();
-  }, [osPlatform]);
-
   const loadConfig = async () => {
     setLoading(true);
     setError('');
@@ -24,6 +20,11 @@ const OSConfiguration = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    loadConfig();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [osPlatform]);
 
   const handleSave = async (e) => {
     e.preventDefault();

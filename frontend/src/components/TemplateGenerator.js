@@ -67,6 +67,8 @@ const TemplateGenerator = () => {
     setError('');
   };
 
+  // Reserved for future use - VM group field changes
+  // eslint-disable-next-line no-unused-vars
   const handleVMGroupChange = (groupIndex, field, value) => {
     const updatedGroups = [...vmGroups];
     updatedGroups[groupIndex][field] = value;

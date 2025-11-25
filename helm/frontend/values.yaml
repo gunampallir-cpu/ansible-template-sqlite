@@ -112,9 +112,8 @@ readinessProbe:
   successThreshold: 1
   failureThreshold: 3
 
-env:
-  - name: REACT_APP_API_URL
-    value: "http://ansible-template-backend:5000/api"
+# Environment variables (not needed for React - API URL configured in nginx proxy)
+env: []
 
 envFrom: []
 

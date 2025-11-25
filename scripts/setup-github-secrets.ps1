@@ -143,7 +143,8 @@ Write-Host "  - View GitHub Actions: https://github.com/gunampallir-cpu/ansible-
 Write-Host "Documentation:" -ForegroundColor Yellow
 Write-Host "  - Full guide: AZURE_DEPLOYMENT.md"
 Write-Host "  - Terraform: terraform/README.md"
-Write-Host "  - Helm charts: helm/README.md`n"
+Write-Host "  - Helm charts: helm/README.md`n" -NoNewline
+Write-Host ""
 
 Write-Host "WARNING: Keep github-secrets.txt secure and delete after use!" -ForegroundColor Red
 

@@ -1,6 +1,6 @@
 # Azure Configuration
-subscription_id     = "6a205d28-34bf-4d6c-931a-dd4709183421"
-tenant_id           = "7dfe41e1-4343-4613-8d2a-3624ea7b067e"
+subscription_id = "76f23ab9-a09e-4fd8-a9ee-a42a64a347e4"
+tenant_id       = "d23a4a26-74d7-4061-b5b7-a4bb30c01501"
 resource_group_name = "ansible-template-rg"
 location            = "eastus"
 
